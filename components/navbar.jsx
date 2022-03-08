@@ -14,11 +14,12 @@ import {
   IconButton,
   useColorModeValue
 } from '@chakra-ui/react';
-import { HumbergerIcon } from '@chakra-ui/icons';
+import { HamburgerIcon, HumbergerIcon } from '@chakra-ui/icons';
+import ThemeToggleButton from './theme-toggle-button';
 
 const LinkItem = ({ href, path, children }) => {
   const active = path === href;
-  const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900');
+  const inactiveColor = useColorModeValue('whiteAlpha.900', 'gray.800');
   return (
     <NextLink href={href}>
       <Link
@@ -39,7 +40,7 @@ const Navbar = props => {
       position="fixed"
       as="nav"
       w="100%"
-      bg={useColorModeValue('#ffffff40', '#20202380')}
+      bg={useColorModeValue('#20202380', '#ffffff40')}
       style={{ backdropFilter: 'blur(10px)' }}
       zIndex={1}
       {...props}
@@ -65,13 +66,40 @@ const Navbar = props => {
           flexGrow={1}
           mt={{ base: 4, md: 0 }}
         >
-          <LinkItem href="/works" path={path}>
+          <LinkItem as={Link} href="/works" path={path}>
             WORKS
           </LinkItem>
-          <LinkItem href="/posts" path={path}>
+          <LinkItem as={Link} href="/posts" path={path}>
             POSTS
           </LinkItem>
         </Stack>
+        <Box flex={1} align="right">
+          <ThemeToggleButton />
+          <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
+            <Menu>
+              <MenuButton
+                as={IconButton}
+                icon={<HamburgerIcon />}
+                variant="outline"
+                aria-label="Options"
+              />
+              <MenuList>
+                <NextLink href="/" passHref>
+                  <MenuItem as={Link}>About</MenuItem>
+                </NextLink>
+                <NextLink href="/works" passHref>
+                  <MenuItem as={Link}>Works</MenuItem>
+                </NextLink>
+                <NextLink href="/posts" passHref>
+                  <MenuItem as={Link}>Posts</MenuItem>
+                </NextLink>
+                <MenuItem as={Link} href="https://facebook.com/jameslyrad">
+                  Facebook
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </Box>
+        </Box>
       </Container>
     </Box>
   );
