@@ -68,12 +68,12 @@ const Page = () => {
             on a prominent Software Company here on the Philippines. He is
             aiming to be one of the greatest in Software Engineering, creating
             startups that could help Filipinos on their small scale businesses.{' '}
-            <NextLink href="/works/inkdrop">
+            <NextLink href="/works/inkdrop" passHref>
               <Link>Inkdrop</Link>
             </NextLink>
           </Paragraph>
           <Box align="center" my={4}>
-            <NextLink href="/works">
+            <NextLink href="/works" passHref>
               <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
                 My Portfolio
               </Button>
